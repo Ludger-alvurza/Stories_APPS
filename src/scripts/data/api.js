@@ -41,13 +41,11 @@ export async function register(name, email, password) {
 }
 
 export async function login(email, password) {
-  // Cek apakah perangkat sedang offline sebelum memulai request
   if (!navigator.onLine) {
     throw new Error("Anda sedang offline. Tidak dapat melakukan login.");
   }
 
   try {
-    // Kirim permintaan login ke server
     const response = await fetch(ENDPOINTS.LOGIN, {
       method: "POST",
       headers: {
@@ -56,18 +54,14 @@ export async function login(email, password) {
       body: JSON.stringify({ email, password }),
     });
 
-    // Parse JSON dari response
     const responseJson = await response.json();
 
-    // Logging untuk debugging
     console.log("Login response:", responseJson);
 
-    // Tangani error dari response HTTP yang bukan status 2xx
     if (!response.ok) {
       throw new Error(responseJson.message || "Gagal melakukan login.");
     }
 
-    // Validasi token dari loginResult
     const { loginResult } = responseJson;
     if (
       !loginResult ||
@@ -77,17 +71,13 @@ export async function login(email, password) {
       throw new Error("Format token tidak valid.");
     }
 
-    // Simpan token ke localStorage
     localStorage.setItem("token", loginResult.token);
     console.log("Token berhasil disimpan di localStorage:", loginResult.token);
 
-    // Return loginResult jika berhasil
     return loginResult;
   } catch (error) {
-    // Logging error untuk debugging
     console.error("Login error:", error.message);
 
-    // Lempar error untuk ditangani di UI
     throw error;
   }
 }
@@ -96,7 +86,7 @@ export async function getAllStories(page = 1, size = 10, location = 0, token) {
   try {
     if (!navigator.onLine) {
       console.warn("Offline mode: Data diambil dari IndexedDB.");
-      return await getOfflineStories(); // Ambil data dari IndexedDB saat offline
+      return await getOfflineStories();
     }
 
     const response = await fetch(
@@ -114,7 +104,6 @@ export async function getAllStories(page = 1, size = 10, location = 0, token) {
 
     const data = await response.json();
 
-    // Sinkronisasi data API ke IndexedDB
     await syncStories(data.listStory);
 
     console.log(
@@ -124,7 +113,6 @@ export async function getAllStories(page = 1, size = 10, location = 0, token) {
   } catch (error) {
     console.error("Error di getAllStories:", error.message);
 
-    // Fallback ke IndexedDB jika fetch gagal
     console.warn("Mengambil data dari IndexedDB sebagai fallback.");
     return await getOfflineStories();
   }

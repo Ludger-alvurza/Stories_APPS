@@ -1,4 +1,5 @@
 {
+  "id": "/index.html",
   "name": "Stories Apps Ludger",
   "short_name": "Aplikasi Submission",
   "start_url": "/index.html",
@@ -15,37 +16,35 @@
       "src": "/images/logo.png",
       "sizes": "512x512",
       "type": "image/png"
-    },
+    }
+  ],
+  "shortcuts": [
     {
-      "shortcuts": [
+      "name": "Tambah Data Baru",
+      "short_name": "Tambah Data",
+      "description": "Shortcut untuk menambahkan data baru",
+      "url": "/#/add-story",
+      "icons": [
         {
-          "name": "Tambah Data Baru",
-          "short_name": "Tambah Data",
-          "description": "Shortcut untuk menambahkan data baru",
-          "url": "/#/add-story",
-          "icons": [
-            {
-              "src": "/icons/add-icon.png",
-              "sizes": "192x192",
-              "type": "image/png"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "screenshots": [
-        {
-          "src": "/screenshots/desktop-screenshot.png",
-          "sizes": "1920x1080",
-          "type": "image/png"
-        },
-        {
-          "src": "/screenshots/mobile-screenshot.png",
-          "sizes": "375x667",
+          "src": "/icons/add-icon.png",
+          "sizes": "192x192",
           "type": "image/png"
         }
       ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-screenshot.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/mobile-screenshot.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ]
 }

@@ -3,13 +3,11 @@ export async function fetchAndSaveImageAsBlob(imageUrl, idbKey) {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
 
-    // Buka database
     const request = indexedDB.open("MyAppDatabase", 2);
 
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
 
-      // Buat object store jika belum ada
       if (!db.objectStoreNames.contains("images")) {
         db.createObjectStore("images", { keyPath: "key" });
         console.log("Object store 'images' created.");
@@ -22,7 +20,6 @@ export async function fetchAndSaveImageAsBlob(imageUrl, idbKey) {
 
       console.log("Available object stores:", db.objectStoreNames);
 
-      // Simpan blob ke IndexedDB
       const transaction = db.transaction("images", "readwrite");
       const store = transaction.objectStore("images");
       store.put({ key: idbKey, data: blob });
@@ -50,7 +47,6 @@ export function getImageBlobFromIndexedDB(key, callback) {
   request.onsuccess = (event) => {
     const db = event.target.result;
 
-    // Ambil data dari IndexedDB
     const transaction = db.transaction("images", "readonly");
     const store = transaction.objectStore("images");
     const getRequest = store.get(key);
@@ -77,14 +73,12 @@ export function getImageBlobFromIndexedDB(key, callback) {
   };
 }
 
-// Inisialisasi Database
 const openDatabase = () => {
-  const request = indexedDB.open("MyAppDatabase", 2); // Pastikan versi database benar
+  const request = indexedDB.open("MyAppDatabase", 2);
 
   request.onupgradeneeded = (event) => {
     const db = event.target.result;
 
-    // Periksa apakah object store "images" sudah ada
     if (!db.objectStoreNames.contains("images")) {
       db.createObjectStore("images", { keyPath: "key" });
       console.log("Object store 'images' created.");

@@ -3,6 +3,7 @@ import AboutPage from "../pages/about/about-page";
 import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
 import AddStoryPage from "../pages/stories/add-stories-page";
+import NotFoundPage from "../pages/not-found-page";
 
 const routes = {
   "/": HomePage,
@@ -45,7 +46,7 @@ const changePage = async (PageClass) => {
 
 const router = async () => {
   const hash = window.location.hash.replace("#", "") || "/";
-  const PageClass = routes[hash] || HomePage;
+  const PageClass = routes[hash] || NotFoundPage;
   await changePage(PageClass);
 };
 
