@@ -1,0 +1,51 @@
+{
+  "name": "Stories Apps Ludger",
+  "short_name": "Aplikasi Submission",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "shortcuts": [
+        {
+          "name": "Tambah Data Baru",
+          "short_name": "Tambah Data",
+          "description": "Shortcut untuk menambahkan data baru",
+          "url": "/#/add-story",
+          "icons": [
+            {
+              "src": "/icons/add-icon.png",
+              "sizes": "192x192",
+              "type": "image/png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "screenshots": [
+        {
+          "src": "/screenshots/desktop-screenshot.png",
+          "sizes": "1920x1080",
+          "type": "image/png"
+        },
+        {
+          "src": "/screenshots/mobile-screenshot.png",
+          "sizes": "375x667",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
